@@ -10,7 +10,7 @@ const SignUp = (props) => {
     setCredentials({ name: "", email: "", password: "", cpassword: "" });
 
     // SIGN UP LOGIC
-    const url = "http://localhost:5000/api/auth/createUser";
+    const url = "https://inotebook-hm0c.onrender.com/api/auth/createUser";
     const response = await fetch(url, { //making a POST request to the specified URL with the provided data in JSON format
       method: "POST",
       headers: {

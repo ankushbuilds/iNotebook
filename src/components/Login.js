@@ -12,7 +12,7 @@ const Login = (props) => {
 
         // LOGIN LOGIC
 
-        const url = "http://localhost:5000/api/auth/login";
+        const url = "https://inotebook-hm0c.onrender.com/api/auth/login";
         const response = await fetch(url, {
             method: "POST",
             headers: {
