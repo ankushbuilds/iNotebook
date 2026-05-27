@@ -14,11 +14,11 @@ const NoteState = (props) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjllMmZiZmExOTMyOTNkMTBjM2E2YzU4In0sImlhdCI6MTc3NjQ5NjM1Mn0.2V1Z1YOgj3lFvcqoQPO9mhu7JEEnY_Ccl7kkOuUk210"
-            },
+                "auth-token": localStorage.getItem('token')
+            }
         });
         const json = await response.json();
-        setNotes(json);
+        setNotes(Array.isArray(json) ? json : []);
     }
 
     // Add Note
@@ -29,7 +29,7 @@ const NoteState = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjllMmZiZmExOTMyOTNkMTBjM2E2YzU4In0sImlhdCI6MTc3NjQ5NjM1Mn0.2V1Z1YOgj3lFvcqoQPO9mhu7JEEnY_Ccl7kkOuUk210"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
@@ -45,7 +45,7 @@ const NoteState = (props) => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjllMmZiZmExOTMyOTNkMTBjM2E2YzU4In0sImlhdCI6MTc3NjQ5NjM1Mn0.2V1Z1YOgj3lFvcqoQPO9mhu7JEEnY_Ccl7kkOuUk210"
+                "auth-token": localStorage.getItem('token')
             },
         });
         const json = await response.json();
@@ -63,11 +63,11 @@ const NoteState = (props) => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjllMmZiZmExOTMyOTNkMTBjM2E2YzU4In0sImlhdCI6MTc3NjQ5NjM1Mn0.2V1Z1YOgj3lFvcqoQPO9mhu7JEEnY_Ccl7kkOuUk210"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
-        const json = response.json();
+        const json = await response.json();
         // logic to edit in client
         for (let index = 0; index < notes.length; index++) {
             const element = notes[index];

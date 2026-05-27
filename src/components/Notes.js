@@ -2,13 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext';
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
+import { useNavigate } from 'react-router-dom';
 
 
-const Notes = () => {
+const Notes = (props) => {
+  const showAlert = props.showAlert;
+
   const context = useContext(noteContext);
-  const { notes, getNotes, editNote } = context;
+    const navigate = useNavigate();
+      const { notes, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+    if (localStorage.getItem('token')) {
+      getNotes();
+    }
+    else {
+      navigate('/login');
+    }
   }, []);
 
   const ref = useRef(null); // Ref for opening the modal
@@ -18,6 +27,7 @@ const Notes = () => {
 
   const updateNote = (currentNote) => {
     ref.current.click();
+
 
     setNote({
       id: currentNote._id || "",
@@ -39,11 +49,13 @@ const Notes = () => {
     refClose.current.click();
     e.preventDefault();
     editNote(note.id, note.title, note.description, note.tag);
+    props.showAlert("Updated Successfully", "success");
+
 
   }
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
       <button type="button" ref={ref} className="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
       </button>
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,11 +93,11 @@ const Notes = () => {
         </div>
       </div>
 
-      <div className="row my-3">
+      <div className="row my-3 notes-section">
         <h2>Your Notes</h2>
         {notes.length === 0 && <div className="alert alert-warning mx-3">Please add some notes.</div>}
         {notes.map((note) => {
-          return <NoteItem key={note._id} updateNote={updateNote} note={note} />;
+          return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} />;
         })}
       </div>
     </>

@@ -1,9 +1,24 @@
-import React, { use } from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
     let location = useLocation(); // Get the current location object
+    const navigate = useNavigate();
+    const showAlert = props.showAlert;
+
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+
+    if (typeof props.showAlert === "function") {
+        props.showAlert("Logged out successfully", "success");
+    }
+
+    setTimeout(() => {
+        navigate('/login');
+    }, 300);
+};
 
 
     return (
@@ -25,12 +40,20 @@ const Navbar = () => {
 
 
                         </ul>
-                        <form className="d-flex" role="search">
-                            <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-                            <Link className="btn btn-danger" to="/signup" role="button">SignUp</Link>
+                        {!localStorage.getItem('token') ? (
+                            <form className="d-flex" role="search">
+                                <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
+                                <Link className="btn btn-danger" to="/signup" role="button">SignUp</Link>
+                            </form>
+                        ) : (
+                            <form className="d-flex" role="search">
+                                <button className="btn btn-primary mx-2" type="button" onClick={handleLogout} >
+                                    Log Out
+                                </button>
+                                <Link className="btn btn-danger" to="/signup" role="button">SignUp</Link>
 
-
-                        </form>
+                            </form>
+                        )}
                     </div>
                 </div>
             </nav>

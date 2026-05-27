@@ -1,16 +1,665 @@
-body {
+
+/* =========================
+   GLOBAL RESET (SAFE ONLY)
+========================= */
+html, body, #root {
+  height: 100%;
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* =========================
+   LOGIN PAGE ONLY
+========================= */
+.my-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
 }
-.icons{
+
+.my-login .container {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 16px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  animation: slideUp 0.5s ease;
+}
+
+/* LOGIN TEXT */
+.my-login h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* =========================
+   SIGNUP PAGE ONLY
+========================= */
+.my-signUp {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
+}
+
+/* SIGNUP FORM CARD */
+.my-signUp form {
+  width: 100%;
+  max-width: 450px;
+
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 16px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  animation: slideUp 0.5s ease;
+}
+
+/* SIGNUP TEXT */
+.my-signUp h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* =========================
+   FORM ELEMENTS (SHARED SAFE)
+========================= */
+.my-login .form-label,
+.my-signUp .form-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.my-login .form-control,
+.my-signUp .form-control {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.my-login .form-control:focus,
+.my-signUp .form-control:focus {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  color: #fff;
+}
+
+.my-login .form-control::placeholder,
+.my-signUp .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* TEXT HELP */
+.my-login .form-text,
+.my-signUp .form-text {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* CHECKBOX */
+.my-signUp .form-check-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* =========================
+   BUTTON (SHARED)
+========================= */
+.my-login .btn-primary,
+.my-signUp .btn-primary {
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.my-login .btn-primary:hover,
+.my-signUp .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.35);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/* =========================
+   FULL ABOUT PAGE BACKGROUND
+========================= */
+.about-page {
+  min-height: 100vh;
+  padding: 20px;
+
+  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
+  color: #fff;
+}
+
+/* =========================
+   HEADER
+========================= */
+.about-page h2 {
+  font-weight: 700;
+  color: #fff;
+}
+
+.about-page .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* =========================
+   STATS CARDS (3 TOP CARDS)
+========================= */
+.about-page .row .card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 14px;
+
+  color: #fff;
+
+  transition: all 0.3s ease;
+}
+
+/* hover effect */
+.about-page .row .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* numbers */
+.about-page .row .card h4 {
+  font-weight: 700;
+}
+
+/* =========================
+   TAB BUTTONS
+========================= */
+.about-page .btn-group {
+  gap: 5px;
+}
+
+.about-page .btn-group .btn {
+  border-radius: 8px !important;
+}
+
+/* active tab */
+.about-page .btn-dark {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+}
+
+/* inactive tab */
+.about-page .btn-outline-secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.about-page .btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   MAIN CONTENT CARD
+========================= */
+.about-page .card.p-4 {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-radius: 16px;
+
+  color: #fff;
+}
+
+/* =========================
+   LIST ITEMS (FEATURES + TECH)
+========================= */
+.about-page .list-group-item {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* tech stack plain list */
+.about-page ul {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================
+   BUTTON INSIDE CONTENT
+========================= */
+.about-page .btn-primary {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 8px;
+}
+
+.about-page .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.35);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.about-page .text-center.text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+  margin-top: 20px;
+}
+
+
+/* =========================
+   ADD NOTE PAGE
+========================= */
+.add-note-page {
+  max-height: 100vh;
+  padding: 30px 20px;
+
+  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* CARD */
+.add-note-page .container {
+  width: 100%;
+  max-width: 650px;
+
+  padding: 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 16px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  animation: slideUp 0.5s ease;
+
+  color: #fff;
+}
+
+/* HEADING */
+.add-note-page h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* LABELS */
+.add-note-page .form-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* INPUTS */
+.add-note-page .form-control {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+/* INPUT FOCUS */
+.add-note-page .form-control:focus {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  color: #fff;
+}
+
+/* PLACEHOLDER */
+.add-note-page .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* BUTTON */
+.add-note-page .btn-primary {
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+  font-weight: 500;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+/* BUTTON HOVER */
+.add-note-page .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.35);
+}
+
+/* DISABLED BUTTON */
+.add-note-page .btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   NOTE ITEM CARD
+========================= */
+.note-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-radius: 16px;
+
+  color: #fcf6f6;
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+
+  min-height: 15px;
+}
+
+/* HOVER EFFECT */
+.note-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* CARD BODY */
+.note-card .card-body {
+  padding: 20px;
+}
+
+/* TITLE */
+.note-card .card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #020202;
+}
+
+/* DESCRIPTION */
+.note-card .card-text {
+  margin-top: 15px;
+  color: rgba(0, 0, 0, 0.82);
+  line-height: 1.5;
+}
+
+/* ICONS */
+.note-card .icons i {
   cursor: pointer;
+
+  color: rgba(254, 252, 252, 0.75);
+
+  transition: 0.25s ease;
+}
+
+/* ICON HOVER */
+.note-card .icons i:hover {
+  color: #a78bfa;
+  transform: scale(1.15);
+}
+
+/* DELETE ICON */
+.note-card .fa-trash-can:hover {
+  color: #ff6b6b;
+}
+
+/* EDIT ICON */
+.note-card .fa-pen-to-square:hover {
+  color: #4ade80;
+}
+
+/* BOOKMARK ICON */
+.note-card .fa-bookmark:hover {
+  color: #facc15;
+}
+
+
+
+/* =========================
+   NOTES SECTION
+========================= */
+.notes-section {
+  padding: 20px;
+  border-radius: 18px;
+}
+
+/* HEADING */
+.notes-section h2 {
+  color: #070101;
+  font-weight: 700;
+  margin-bottom: 25px;
+text-align: center;}
+
+/* EMPTY ALERT */
+.notes-section .alert-warning {
+  background: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+
+  color: #110101;
+text-align: center;
+  border-radius: 12px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* NOTE GRID SPACING */
+.notes-section .col-md-3 {
+  display: flex;
+}
+
+/* MAKE CARDS EQUAL HEIGHT */
+.notes-section .note-card {
+  width: 100%;
+}
+
+
+/* =========================
+   FIX WHITE SPACE ISSUE
+========================= */
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* REMOVE BOOTSTRAP SIDE SPACE */
+.container,
+.container-fluid {
+  max-width: 100% !important;
+}
+
+/* =========================
+   RESPONSIVE NOTES SECTION
+========================= */
+
+/* LARGE SCREEN */
+@media (max-width: 1200px) {
+
+  .notes-section h2 {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .notes-section .alert-warning {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+
+  .col-md-3 {
+    width: 50%;
+  }
+
+  .note-card {
+    width: 100%;
+  }
+
+  .notes-section h2 {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .notes-section .alert-warning {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .col-md-3 {
+    width: 100%;
+  }
+
+  .my-login .container,
+  .my-signUp form,
+  .add-note-page .container {
+    padding: 20px;
+  }
+
+  .about-page {
+    padding: 15px;
+  }
+
+  .notes-section {
+    padding: 10px;
+  }
+
+  .notes-section h2 {
+    padding-left: 0;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .notes-section .alert-warning {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .note-card {
+    min-height: auto;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+  }
+
+  .my-login,
+  .my-signUp,
+  .add-note-page,
+  .about-page {
+    padding: 10px;
+  }
+}
+
+
+/* =========================
+   FINAL WHITE SPACE FIX
+========================= */
+
+/* REMOVE HORIZONTAL OVERFLOW */
+body {
+  overflow-x: hidden;
+}
+
+/* FIX BOOTSTRAP ROW OVERFLOW */
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* REMOVE EXTRA COLUMN PADDING */
+.col,
+.col-md-3,
+.col-md-4,
+.col-md-6,
+.col-md-12 {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+/* FULL WIDTH LAYOUT */
+.notes-section,
+.about-page,
+.add-note-page,
+.my-login,
+.my-signUp {
+  width: 100%;
+  overflow-x: hidden;
 }

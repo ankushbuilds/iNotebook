@@ -1,4 +1,4 @@
-import REact, { useState } from "react"
+import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 const SignUp = (props) => {
   const [credentials, setCredentials] = useState({ name: '', email: '', password: '', cpassword: "" });
@@ -37,13 +37,13 @@ const SignUp = (props) => {
 
   return (
 
-    <div className='container'>
-      <h2>Sign Up</h2>
+    <div className='my-signUp'>
+     
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="my-3">
+           <h2>Create a New Account</h2>
           <label htmlFor="name" className="form-label">Name</label>
           <input type="text" className="form-control" id="name" name="name" onChange={onChange} aria-describedby="emailHelp" />
-          <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>

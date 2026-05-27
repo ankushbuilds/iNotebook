@@ -3,18 +3,20 @@ import noteContext from '../context/notes/NoteContext';
 
 
 const NoteItem = (props) => {
-  const { note, updateNote } = props;
+
+  const { note, updateNote, showAlert } = props;
   const context = useContext(noteContext);
   const { deleteNote } = context;
 
-  const handleDelete = () => {
-    deleteNote(note._id);
+  const handleDelete = async() => {
+    await deleteNote(note._id);
+      props.showAlert("Deleted Successfully", "success");
   };
 
 
   return (
     <div className='col-md-3'>
-      <div className="card my-3" style={{ width: '15rem' }}>
+      <div className="card note-card" style={{ width: '15rem' }}>
         <div className="card-body">
           <div className="d-flex align-items-center justify-content-between">
 
